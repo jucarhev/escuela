@@ -92,7 +92,7 @@ CREATE TABLE alumnos(
 	domicilio text,
 	estado varchar(200),
 	municipio varchar(255),
-	localidad varchara(255),
+	localidad varchar(255),
 	codigopostal int(6),
 	matricula int(10)
 )ENGINE=INNODB;
