@@ -15,7 +15,7 @@ CREATE TABLE grupos(
 	letra varchar(2) not null,
 	turno enum("Matutino","Vespertino"),
 	id_asesor int(10),
-	id_grupo(10)
+	id_grado int(10)
 )ENGINE=INNODB;
 
 
@@ -78,12 +78,33 @@ CREATE TABLE horarios(
 	hora_fin varchar(10)
 )ENGINE=INNODB;
 
+
+
 -- Pendientes 
 
 CREATE TABLE alumnos(
-	id int(10) not null auto_increment primary key
+	id int(10) not null auto_increment primary key,
+	nombre varchar(100) not null,
+	apellido_paterno varchar(100) not null,
+	apellido_materno varchar(100) not null,
+	genero enum("Masculino","Femenino"),
+	fecha_nacimiento date,
+	domicilio text,
+	estado varchar(200),
+	municipio varchar(255),
+	localidad varchara(255),
+	codigopostal int(6),
+	matricula int(10)
 )ENGINE=INNODB;
 
 CREATE TABLE profesor(
-	id int(10) not null auto_increment primary key
+	id int(10) not null auto_increment primary key,
+	nombre varchar(100) not null,
+	apellido_paterno varchar(100) not null,
+	apellido_materno varchar(100) not null,
+	genero enum("Masculino","Femenino"),
+	fecha_nacimiento date,
+	domicilio text,
+	profesion varchar(100)
 )ENGINE=INNODB;
+
