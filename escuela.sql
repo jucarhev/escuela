@@ -87,13 +87,6 @@ CREATE TABLE alumnos(
 	nombre varchar(100) not null,
 	apellido_paterno varchar(100) not null,
 	apellido_materno varchar(100) not null,
-	genero enum("Masculino","Femenino"),
-	fecha_nacimiento date,
-	domicilio text,
-	estado varchar(200),
-	municipio varchar(255),
-	localidad varchar(255),
-	codigopostal int(6),
 	matricula int(10)
 )ENGINE=INNODB;
 
@@ -102,9 +95,42 @@ CREATE TABLE profesor(
 	nombre varchar(100) not null,
 	apellido_paterno varchar(100) not null,
 	apellido_materno varchar(100) not null,
+	profesion varchar(100),
+	clave varchar(10)
+)ENGINE=INNODB;
+
+CREATE TABLE personal(
+	id int(10) not null auto_increment primary key,
+	nombre varchar(100) not null,
+	apellido_paterno varchar(100) not null,
+	apellido_materno varchar(100) not null,
+	ocupacion varchar(100),
+	antiguedad int(10),
+	clave varchar(10)
+)ENGINE=INNODB;
+
+CREATE TABLE datos(
+	id int(10) not null auto_increment primary key,
+	meta_id int(10) not null,
 	genero enum("Masculino","Femenino"),
 	fecha_nacimiento date,
 	domicilio text,
-	profesion varchar(100)
+	fechaingreso date,
+	estado varchar(200),
+	municipio varchar(255),
+	localidad varchar(255),
+	codigopostal int(6),
 )ENGINE=INNODB;
 
+CREATE TABLE alumnos_grados(
+	id int(10) not null auto_increment primary key,
+	id_alumno int(10),
+	id_grado int(10),
+	status enum('Activo','Reprobado','Deserto','Aprobado','Graduado')
+)ENGINE=INNODB;
+
+CREATE TABLE alumnos_trabajos(
+	id int(10) not null auto_increment primary key,
+	id_alumno int(10),
+	id_trabajos int(10),
+)ENGINE=INNODB;
