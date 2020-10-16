@@ -2,20 +2,43 @@ CREATE DATABASE escuela;
 
 USE escuela;
 
+--------------------------------------------------
 CREATE TABLE grados(
 	id int(10) not null auto_increment primary key,
 	nombre varchar(50),
 	tipo varchar(50),
 	inicio date,
-	fin date
+	fin date,
+	status enum('Activo','Inactivo'),
+	created_at date,
+	updated_at date
 )ENGINE=INNODB;
+
+CREATE TABLE fechas_grados(
+	id int(10) not null auto_increment primary key,
+	id_grado int(10),
+	fecha_fin date,
+	fecha_inicio date,
+	status enum('Terminado','En proceso')
+)ENGINE=INNODB;
+
+CREATE TABLE calendario(
+	id int(10) not null auto_increment primary key,
+	dia int(2) not null,
+	mes int(2) not null,
+	anio int(2) not null,
+	evento varchar(255),
+	duracion varchar(5)
+)engine = innodb;
 
 CREATE TABLE grupos(
 	id int(10) not null auto_increment primary key,
 	letra varchar(2) not null,
 	turno enum("Matutino","Vespertino"),
 	id_asesor int(10),
-	id_grado int(10)
+	id_grado int(10),
+	created_at date,
+	updated_at date
 )ENGINE=INNODB;
 
 
@@ -51,23 +74,6 @@ CREATE TABLE trabajos(
 	fecha_fin date
 )ENGINE=INNODB;
 
-CREATE TABLE asistencia(
-	id int(10) not null auto_increment primary key,
-	id_alumno int(10) not null,
-	fecha date,
-	status enum("Presente","Ausente","Permiso"),
-	id_grupo int(10)
-)ENGINE=INNODB;
-
-
-CREATE TABLE paraescola(
-	id int(10) not null auto_increment primary key,
-	nombre varchar(200) not null,
-	clave varchar(10),
-	id_asesor int(10),
-	id_alumno int(10)
-)ENGINE=INNODB;
-
 CREATE TABLE horarios(
 	id int(10) not null auto_increment primary key,
 	dia enum("Lunes","Martes","Miercoles","Jueves","Viernes"),
@@ -78,9 +84,21 @@ CREATE TABLE horarios(
 	hora_fin varchar(10)
 )ENGINE=INNODB;
 
+CREATE TABLE asistencia(
+	id int(10) not null auto_increment primary key,
+	id_alumno int(10) not null,
+	fecha date,
+	status enum("Presente","Ausente","Permiso"),
+	id_grupo int(10)
+)ENGINE=INNODB;
 
 
--- Pendientes 
+CREATE TABLE paraescolar(
+	id int(10) not null auto_increment primary key,
+	nombre varchar(200) not null,
+	clave varchar(10),
+	id_asesor int(10)
+)ENGINE=INNODB;
 
 CREATE TABLE alumnos(
 	id int(10) not null auto_increment primary key,
@@ -134,3 +152,32 @@ CREATE TABLE alumnos_trabajos(
 	id_alumno int(10),
 	id_trabajos int(10),
 )ENGINE=INNODB;
+
+CREATE TABLE periodo(
+	id int(10) not null auto_increment primary key,
+	tipo enum("Semestre","Cuatrimestre","Timestre","Anual") not null,
+	feha_inicio date,
+	fecha_fin date
+)ENGINE=INNODB;
+
+CREATE TABLE calificaciones(
+	id int(10) not null auto_increment primary key
+)ENGINE=INNODB;
+
+CREATE TABLE alumnos_datos(
+	id int(10) not null auto_increment primary key,
+	id_alumno int(10),
+	id_datos int(10)
+)ENGINE=INNODB;
+
+
+CREATE TABLE alumnos_paraescolar(
+	id int(10) not null auto_increment primary key,
+	id_alumno int(10),
+	id_paraescolar int(10)
+)ENGINE=INNODB;
+
+-- operaciones
+CREATE USER 'colegio'@'localhost' identified by 'colegio';
+GRANT ALL PRIVILEGES ON colegio.* TO colegio@localhost;
+FLUSH PRIVILEGES;
