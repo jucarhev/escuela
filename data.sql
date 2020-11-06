@@ -58,3 +58,9 @@ INSERT INTO documentos(nombre,tipo,descripcion) values
 ("Comprobante de docmicilio","Original","Lugar de radicacion"),
 ("Recibo de incripcion","Original","Pago de la couta")
 ;
+
+
+-- operaciones
+CREATE USER 'colegio'@'localhost' identified by 'colegio';
+GRANT ALL PRIVILEGES ON colegio.* TO colegio@localhost;
+FLUSH PRIVILEGES;
