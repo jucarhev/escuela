@@ -103,10 +103,9 @@ CREATE TABLE asistencia(
 	id int(10) not null auto_increment primary key,
 	id_alumno int(10) not null,
 	fecha date,
-	status enum("Presente","Ausente","Permiso"),
+	status enum("Presente","Ausente","Permiso","No activo"),
 	id_grupo int(10)
 )ENGINE=INNODB;
-
 
 CREATE TABLE paraescolar(
 	id int(10) not null auto_increment primary key,
@@ -114,8 +113,6 @@ CREATE TABLE paraescolar(
 	clave varchar(10),
 	id_asesor int(10)
 )ENGINE=INNODB;
-
-
 
 CREATE TABLE profesor(
 	id int(10) not null auto_increment primary key,
