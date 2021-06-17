@@ -2,7 +2,6 @@ CREATE DATABASE escuela;
 
 USE escuela;
 
-
 CREATE TABLE materias(
 	id int(10) not null auto_increment primary key,
 	nombre varchar(100) not null,
@@ -33,7 +32,7 @@ CREATE TABLE grados(
 	tipo varchar(50),
 	inicio date,
 	fin date,
-	status enum('Activo','Inactivo'),
+	status enum('Activo','Inactivo','Graduado','Expulsado'),
 	created_at date,
 	updated_at date
 )ENGINE=INNODB;
@@ -76,7 +75,7 @@ CREATE TABLE datos(
 	estado varchar(200),
 	municipio varchar(255),
 	localidad varchar(255),
-	codigopostal int(6),
+	codigopostal int(6)
 )ENGINE=INNODB;
 
 CREATE TABLE trabajos(
@@ -142,8 +141,6 @@ CREATE TABLE tutores(
 	telefono int(12),
 	telefono2 varchar(39)
 )ENGINE=INNODB;
----------------------------
-
 
 CREATE TABLE periodo(
 	id int(10) not null auto_increment primary key,
@@ -184,7 +181,7 @@ CREATE TABLE alumnos_grados(
 CREATE TABLE alumnos_trabajos(
 	id int(10) not null auto_increment primary key,
 	id_alumno int(10),
-	id_trabajos int(10),
+	id_trabajos int(10)
 )ENGINE=INNODB;
 
 CREATE TABLE documentos_alumnos(
@@ -193,4 +190,11 @@ CREATE TABLE documentos_alumnos(
 	id_documento int(10) not null,
 	status enum("Entregado","Pendiente","Extraviado") not null,
 	fecha date
+)ENGINE=INNODB;
+
+CREATE TABLE usuarios(
+	id int(10) not null auto_increment primary key,
+	matricula int(10) not null,
+	contrasenia varchar(100) not null,
+	tipo enum("Alumno","Profesor","Director") not null
 )ENGINE=INNODB;
