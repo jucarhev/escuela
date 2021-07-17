@@ -28,5 +28,4 @@ En el archivo **data.sql** tenemos los datos para llenar las tablas. *Considera 
 22. documentos_alumnos
 
 ### Tablas de momento para el sistema
-1. usuarios
-
+ninguna
